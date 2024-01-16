@@ -59,7 +59,7 @@ function Form() {
   return (
     <form className=" bg-white flex flex-col justify-between items-center  border-dotted border-blue-900 border rounded-lg p-8">
       <label htmlFor="file" className=" capitalize font-bold">
-        Upload file
+        Finger Print Validator
       </label>
       <div className=" my-4">
         <div className=" bg-black h-40 w-60 rounded-lg flex items-center justify-center flex-col">
