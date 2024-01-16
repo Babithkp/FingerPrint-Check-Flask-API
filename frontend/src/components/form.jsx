@@ -34,12 +34,12 @@ function Form() {
       if (response) {
         setIsLoading(false);
       }
-      if(response.data.score === undefined) {
-        setIsError(true)
-        setSubmit(false)
-        setScore(response.data);
-        return
+      if (!response.data.score) {
+        setIsError(true);
+        setSubmit(false);
+        return;
       }
+      setScore(response.data);
       setUploaded(true);
     } catch (e) {
       setIsLoading(false);
@@ -67,18 +67,17 @@ function Form() {
             <MdFingerprint size={90} color="rgb(0, 255, 255)" />
           )}
           {submit && !isLoading && (
-              <TbCheckbox size={90} color="rgb(0, 255, 255)" />
-            
+            <TbCheckbox size={90} color="rgb(0, 255, 255)" />
           )}
           {isError && <BiErrorCircle size={90} color="rgb(0, 255, 255)" />}
           <div className=" animate-spin">
             {isLoading && <VscLoading size={90} color="rgb(0, 255, 255)" />}
           </div>
           <div className="flex flex-col items-center">
-              <p className=" text-teal-300 font-medium capitalize">
-                {score.message} <span>{score.score}</span>
-              </p>
-            </div>
+            <p className=" text-teal-300 font-medium capitalize">
+              {score.message} <span>{score.score}</span>
+            </p>
+          </div>
         </div>
         <div>
           <input
@@ -99,32 +98,31 @@ function Form() {
             type="button"
             onClick={!submit ? uploadhandler : submitHandler}
           >
-            {!submit ? "upload" : isLoading ? "Loading..." :"submit"}
+            {!submit ? "upload" : isLoading ? "Loading..." : "submit"}
           </button>
         )}
-        {isError &&  (
-            <button
-              className=" bg-blue-500 rounded-md p-2 font-medium capitalize cursor-pointer"
-              type="button"
-              
-              onClick={() => {
-                window.location.reload(false);
-              }}
-            >
-              Try Again
-            </button>
-          )}
-          {uploaded &&  (
-            <button
-              className=" bg-blue-500 rounded-md p-2 font-medium capitalize cursor-pointer"
-              type="button"
-              onClick={() => {
-                window.location.reload(false);
-              }}
-            >
-              Try Again
-            </button>
-          )}
+        {isError && (
+          <button
+            className=" bg-blue-500 rounded-md p-2 font-medium capitalize cursor-pointer"
+            type="button"
+            onClick={() => {
+              window.location.reload(false);
+            }}
+          >
+            Try Again
+          </button>
+        )}
+        {uploaded && (
+          <button
+            className=" bg-blue-500 rounded-md p-2 font-medium capitalize cursor-pointer"
+            type="button"
+            onClick={() => {
+              window.location.reload(false);
+            }}
+          >
+            Try Again
+          </button>
+        )}
       </div>
     </form>
   );
