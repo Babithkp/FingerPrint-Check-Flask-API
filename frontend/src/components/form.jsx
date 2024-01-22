@@ -37,6 +37,7 @@ function Form() {
       if (!response.data.score) {
         setIsError(true);
         setSubmit(false);
+        setScore(response.data);
         return;
       }
       setScore(response.data);
