@@ -54,5 +54,21 @@ def upload_media():
             return jsonify({"message":"Finger Print not found"}),202
         return jsonify({"message":"FingerPrint Matched score: ",'score':result}), 200
 
+
+@app.route("/media/upload/new", methods=["POST"])
+def upload_new_media():
+    if request.method == 'POST':
+        response = jsonify(message="Simple server is running")
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        target=os.path.join(database_path)
+        if not os.path.isdir(target):
+            os.mkdir(target)
+        file = request.files['file'] 
+        filename = secure_filename(file.filename)
+        destination="/".join([target, filename])
+        file.save(destination)
+        return jsonify({"message":"FingerPrint Uploaded Successfull"}), 200
+    
+    
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

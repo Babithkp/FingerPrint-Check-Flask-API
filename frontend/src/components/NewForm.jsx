@@ -5,7 +5,7 @@ import { VscLoading } from "react-icons/vsc";
 import { TbCheckbox } from "react-icons/tb";
 import { BiErrorCircle } from "react-icons/bi";
 
-function Form() {
+function NewForm() {
   const [submit, setSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -28,7 +28,7 @@ function Form() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:5000/media/upload",
+        "http://127.0.0.1:5000/media/upload/new",
         newData
       );
       if (response) {
@@ -60,7 +60,7 @@ function Form() {
   return (
     <form className=" bg-white flex flex-col justify-between items-center  border-dotted border-blue-900 border rounded-lg p-8">
       <label htmlFor="file" className=" capitalize font-bold">
-        Finger Print Validator
+        Add New Fringer Print
       </label>
       <div className=" my-4">
         <div className=" bg-black h-40 w-60 rounded-lg flex items-center justify-center flex-col">
@@ -130,4 +130,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default NewForm;
